@@ -33,8 +33,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    # when a signup is valid, flash should be present
-    assert_not flash.empty?
+    assert_not flash.empty? # when a signup is valid, flash should be present
+    assert is_logged_in? # verify the user is logged in with a valid session referencing user_id
   end
 
 end

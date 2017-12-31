@@ -14,6 +14,8 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'bootstrap-sass', '~> 3.3.7'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
+# jquery
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
