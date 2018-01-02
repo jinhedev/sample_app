@@ -14,6 +14,10 @@ gem 'bcrypt', '~> 3.1.11'
 gem 'faker', '~> 1.7.3'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.7'
+# pagination
+gem 'will_paginate', '~> 3.1.6'
+# pagination conformed to Bootstrap
+gem 'bootstrap-will_paginate', '~> 1.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # jquery
