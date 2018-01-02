@@ -49,4 +49,16 @@ module SessionsHelper
     @current_user = nil
   end
 
+  # redirects to the stored location (or to the default)
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default)
+    session.delete(:forwarding_url)
+  end
+
+  # stores the url trying to be accessed
+  def store_location
+    # if a user delete his session cookies before submitting the signin or signup form, but rails is trying to retrieve the store location from his cookies => crash => request.get?
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
 end

@@ -10,6 +10,8 @@ ruby '2.4.1'
 gem 'rails', '~> 5.1.4'
 # bcrypt
 gem 'bcrypt', '~> 3.1.11'
+# User faker to generate sample users in batch
+gem 'faker', '~> 1.7.3'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.7'
 # Use postgresql as the database for Active Record
