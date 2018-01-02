@@ -1,4 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# WARNING: yaml file is white space sensitive
 jin:
   name: Jin Example
   email: jin@example.com
@@ -8,3 +9,20 @@ sponge:
   name: Sponge
   email: spongy@bungie.co.uk
   password_digest: <%= User.digest('password000') %>
+
+michael:
+  name: Michael Example
+  email: michael@example.com
+  password_digest: <%= User.digest('password000') %>
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+  password_digest: <%= User.digest('password000') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password000') %>
+<% end %>
