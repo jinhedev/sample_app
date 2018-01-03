@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # manual user
-User.create!(name: "ohjinnyboy", email: "example@railstoturial.org", password: "foobarbaz", password_confirmation: "foobarbaz")
+User.create!(name: "ohjinnyboy", email: "example@railstoturial.org", password: "foobarbaz", password_confirmation: "foobarbaz", admin: true)
 
 # faker seeds
 99.times do |n|
