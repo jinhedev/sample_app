@@ -1,8 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 # WARNING: yaml file is white space sensitive
+admin:
+  name: admin
+  email: admin@example.com
+  admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
 jin:
   name: Jin Example
-  email: jin@example.com
+  email: example@railstoturial.org
   password_digest: <%= User.digest('password000') %>
   admin: true
   activated: true
