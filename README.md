@@ -39,3 +39,6 @@ $ rails server
 
 For more information, see the
 [*Ruby on Rails Tutorial* book](http://www.railstutorial.org/book).
+
+### Note to myself
+When pushing some refs to heroku's git repo results a failure, it is possible that Rails has partially started a migration, but got stopped. In this situation, try deleting the ``/Users/rightmeow/.local/share/heroku/client``.
