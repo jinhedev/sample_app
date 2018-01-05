@@ -29,6 +29,7 @@ class PasswordResetsController < ApplicationController
       render 'edit'
     elsif @user.update_attributes(user_params)
       log_in @user
+      @user.update_attribute(:reset_digest, nil) # so that user/anyone can't hit back button to use the same reset link again.
       flash[:success] = "Password has been reset"
       redirect_to @user
     else
@@ -39,7 +40,7 @@ class PasswordResetsController < ApplicationController
   private
 
   def user_params
-    params.requre(:user).permit(:password, :password_confirmation)
+    params.require(:user).permit(:password, :password_confirmation)
   end
 
   def get_user
