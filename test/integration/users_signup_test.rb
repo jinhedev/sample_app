@@ -2,6 +2,10 @@ require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
 
+  def setup
+    ActionMailer::Base.deliveries.clear
+  end
+
   test "invalid signup information" do
     get signup_path
     assert_no_difference 'User.count' do
@@ -15,26 +19,40 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }
     end
     assert_template 'users/new'
-    # assert_select 'div#error_messages'
-    assert_select 'div.alert'
+    assert_select 'div#error_explanation' # div id
+    assert_select 'div.field_with_errors' # div class
   end
 
-  test "valid signup information" do
+  test "valid signup information with account activation" do
     get signup_path
     assert_difference 'User.count', 1 do
       post users_path, params: {
         user: {
           name: "example user",
-          email: "user@example.com",
-          password: "password123",
-          password_confirmation: "password123"
+          email: "user000@example.com",
+          password: "password1234",
+          password_confirmation: "password1234"
         }
       }
     end
+    assert_equal 1, ActionMailer::Base.deliveries.size
+    user = assigns(:user)
+    assert_not user.activated?
+    # try to log in before activation.
+    log_in_as(user)
+    assert_not is_logged_in?
+    # invalid activation token
+    get edit_account_activation_path("invalid token", email: user.email)
+    assert_not is_logged_in?
+    # valid token, wrong email
+    get edit_account_activation_path(user.activation_token, email: "wrong")
+    assert_not is_logged_in?
+    # valid activation token and email
+    get edit_account_activation_path(user.activation_token, email: user.email)
+    assert user.reload.activated?
     follow_redirect!
-    # assert_template 'users/show'
-    # assert_not flash.empty? # when a signup is valid, flash should be present
-    # assert is_logged_in? # verify the user is logged in with a valid session referencing user_id
+    assert_template 'users/show'
+    assert is_logged_in?
   end
 
 end
