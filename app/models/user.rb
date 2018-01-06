@@ -66,6 +66,13 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  # defines a proto-feed.
+  # see "following users" for the full implementations.
+  # id is properly escaped before being included in the underlying SQL query, thereby avoiding a serious security hole called SQL injection.
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
   private
 
   # converts email to all downcase
