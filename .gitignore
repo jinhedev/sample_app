@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore uploaded assets from development.
+/public/uploads
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
