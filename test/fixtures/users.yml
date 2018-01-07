@@ -3,6 +3,7 @@
 admin:
   name: admin
   email: admin@example.com
+  password_digest: <%= User.digest('password000') %> # or 123123123
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
