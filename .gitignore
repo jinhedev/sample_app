@@ -10,6 +10,9 @@
 # Ignore uploaded assets from development.
 /public/uploads
 
+# Ignore specific files.
+accessKeys.csv
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
