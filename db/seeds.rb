@@ -6,16 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# manual user
+# MARK: - Users
+
 User.create!(name: "ohjinnyboy", email: "example@railstoturial.org", password: "foobarbaz", password_confirmation: "foobarbaz", admin: true, activated: true, activated_at: Time.zone.now)
 
-# faker seeds
 99.times do |n|
   name = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "123123123"
   User.create!(name: name, email: email, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now)
 end
+
+# MARK: - Microposts
 
 users = User.order(:created_at).take(6)
 50.times do
@@ -24,3 +26,12 @@ users = User.order(:created_at).take(6)
     user.microposts.create!(content: content)
   }
 end
+
+# MARK: - Relationships
+
+users = User.all
+user = User.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }

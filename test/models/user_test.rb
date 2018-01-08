@@ -76,6 +76,17 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
 
+  test "should follow and unfollow a user" do
+    jin = users(:jin)
+    sponge = users(:sponge)
+    assert_not jin.following?(sponge)
+    jin.follow(sponge)
+    assert jin.following?(sponge)
+    assert sponge.followers.include?(jin)
+    jin.unfollow(sponge)
+    assert_not jin.following?(sponge)
+  end
+
   # MARK: - Micropost
 
   test "associated microposts should be destroyed" do
