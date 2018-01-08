@@ -78,13 +78,13 @@ class UserTest < ActiveSupport::TestCase
 
   test "should follow and unfollow a user" do
     jin = users(:jin)
-    sponge = users(:sponge)
-    assert_not jin.following?(sponge)
-    jin.follow(sponge)
-    assert jin.following?(sponge)
-    assert sponge.followers.include?(jin)
-    jin.unfollow(sponge)
-    assert_not jin.following?(sponge)
+    malory = users(:malory)
+    assert_not jin.following?(malory)
+    jin.follow(malory)
+    assert jin.following?(malory)
+    assert malory.followers.include?(jin)
+    jin.unfollow(malory)
+    assert_not jin.following?(malory)
   end
 
   # MARK: - Micropost
