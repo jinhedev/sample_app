@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 # yml file does NOT support block comments.
 one:
-  follower: jin
-  followed: sponge
+  follower: michael
+  followed: lana
 
 two:
   follower: michael
   followed: malory
 
 three:
-  follower: sponge
+  follower: lana
   followed: michael
 
 four:
-  follower: jin
+  follower: archer
   followed: michael

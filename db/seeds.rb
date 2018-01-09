@@ -8,7 +8,7 @@
 
 # MARK: - Users
 
-User.create!(name: "ohjinnyboy", email: "example@railstoturial.org", password: "foobarbaz", password_confirmation: "foobarbaz", admin: true, activated: true, activated_at: Time.zone.now)
+User.create!(name: "Example User", email: "example@railstutorial.org", password: "foobarbaz", password_confirmation: "foobarbaz", admin: true, activated: true, activated_at: Time.zone.now)
 
 99.times do |n|
   name = Faker::Name.name

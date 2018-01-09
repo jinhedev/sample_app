@@ -73,11 +73,11 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # defines a proto-feed.
-  # see "following users" for the full implementations.
-  # id is properly escaped before being included in the underlying SQL query, thereby avoiding a serious security hole called SQL injection.
+  # Of course, even the subselect won’t scale forever. For bigger sites, you would probably need to generate the feed asynchronously using a background job, but such scaling subtleties are beyond the scope of this tutorial.
+  # returns user status feed.
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
   end
 
   # return true if current user is following other_user
@@ -87,7 +87,7 @@ class User < ApplicationRecord
 
   # follows a user.
   def follow(other_user)
-    following << other_user # same as 'append', just some ruby's syntatic sugar.
+    following << other_user # same as 'append', '<<' is just some ruby's syntatic sugar.
   end
 
   # unfollows a user.
